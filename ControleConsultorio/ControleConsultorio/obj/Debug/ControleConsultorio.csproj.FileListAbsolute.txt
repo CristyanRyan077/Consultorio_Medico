@@ -10,3 +10,4 @@ C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\D
 C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\Debug\ControleConsultorio.exe
 C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\Debug\ControleConsultorio.pdb
 C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\Debug\ControleConsultorio.frmPacientes.resources
+C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\Debug\ControleConsultorio.frmConsultas.resources

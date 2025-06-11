@@ -80,6 +80,7 @@
             this.toolStripButton3.Size = new System.Drawing.Size(63, 35);
             this.toolStripButton3.Text = "Consultas";
             this.toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // frmMain
             // 

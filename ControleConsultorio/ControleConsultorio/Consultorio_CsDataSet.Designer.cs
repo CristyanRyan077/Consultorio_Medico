@@ -24,11 +24,15 @@ namespace ControleConsultorio {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class Consultorio_CsDataSet : global::System.Data.DataSet {
         
-        private ConsultasDataTable tableConsultas;
+        private ConsultaDataTable tableConsulta;
         
         private MedicoDataTable tableMedico;
         
         private PacienteDataTable tablePaciente;
+        
+        private global::System.Data.DataRelation relationFK_CONSULTA_MEDICO;
+        
+        private global::System.Data.DataRelation relationFK_CONSULTA_PACIENTE;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -58,8 +62,8 @@ namespace ControleConsultorio {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["Consultas"] != null)) {
-                    base.Tables.Add(new ConsultasDataTable(ds.Tables["Consultas"]));
+                if ((ds.Tables["Consulta"] != null)) {
+                    base.Tables.Add(new ConsultaDataTable(ds.Tables["Consulta"]));
                 }
                 if ((ds.Tables["Medico"] != null)) {
                     base.Tables.Add(new MedicoDataTable(ds.Tables["Medico"]));
@@ -89,9 +93,9 @@ namespace ControleConsultorio {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ConsultasDataTable Consultas {
+        public ConsultaDataTable Consulta {
             get {
-                return this.tableConsultas;
+                return this.tableConsulta;
             }
         }
         
@@ -182,8 +186,8 @@ namespace ControleConsultorio {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["Consultas"] != null)) {
-                    base.Tables.Add(new ConsultasDataTable(ds.Tables["Consultas"]));
+                if ((ds.Tables["Consulta"] != null)) {
+                    base.Tables.Add(new ConsultaDataTable(ds.Tables["Consulta"]));
                 }
                 if ((ds.Tables["Medico"] != null)) {
                     base.Tables.Add(new MedicoDataTable(ds.Tables["Medico"]));
@@ -224,10 +228,10 @@ namespace ControleConsultorio {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableConsultas = ((ConsultasDataTable)(base.Tables["Consultas"]));
+            this.tableConsulta = ((ConsultaDataTable)(base.Tables["Consulta"]));
             if ((initTable == true)) {
-                if ((this.tableConsultas != null)) {
-                    this.tableConsultas.InitVars();
+                if ((this.tableConsulta != null)) {
+                    this.tableConsulta.InitVars();
                 }
             }
             this.tableMedico = ((MedicoDataTable)(base.Tables["Medico"]));
@@ -242,6 +246,8 @@ namespace ControleConsultorio {
                     this.tablePaciente.InitVars();
                 }
             }
+            this.relationFK_CONSULTA_MEDICO = this.Relations["FK_CONSULTA_MEDICO"];
+            this.relationFK_CONSULTA_PACIENTE = this.Relations["FK_CONSULTA_PACIENTE"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -252,17 +258,25 @@ namespace ControleConsultorio {
             this.Namespace = "http://tempuri.org/Consultorio_CsDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableConsultas = new ConsultasDataTable();
-            base.Tables.Add(this.tableConsultas);
+            this.tableConsulta = new ConsultaDataTable();
+            base.Tables.Add(this.tableConsulta);
             this.tableMedico = new MedicoDataTable();
             base.Tables.Add(this.tableMedico);
             this.tablePaciente = new PacienteDataTable();
             base.Tables.Add(this.tablePaciente);
+            this.relationFK_CONSULTA_MEDICO = new global::System.Data.DataRelation("FK_CONSULTA_MEDICO", new global::System.Data.DataColumn[] {
+                        this.tableMedico.ID_MEDICOColumn}, new global::System.Data.DataColumn[] {
+                        this.tableConsulta.ID_MEDICOColumn}, false);
+            this.Relations.Add(this.relationFK_CONSULTA_MEDICO);
+            this.relationFK_CONSULTA_PACIENTE = new global::System.Data.DataRelation("FK_CONSULTA_PACIENTE", new global::System.Data.DataColumn[] {
+                        this.tablePaciente.ID_PACIENTEColumn}, new global::System.Data.DataColumn[] {
+                        this.tableConsulta.ID_PACIENTEColumn}, false);
+            this.Relations.Add(this.relationFK_CONSULTA_PACIENTE);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeConsultas() {
+        private bool ShouldSerializeConsulta() {
             return false;
         }
         
@@ -334,7 +348,7 @@ namespace ControleConsultorio {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void ConsultasRowChangeEventHandler(object sender, ConsultasRowChangeEvent e);
+        public delegate void ConsultaRowChangeEventHandler(object sender, ConsultaRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void MedicoRowChangeEventHandler(object sender, MedicoRowChangeEvent e);
@@ -347,13 +361,13 @@ namespace ControleConsultorio {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ConsultasDataTable : global::System.Data.TypedTableBase<ConsultasRow> {
+        public partial class ConsultaDataTable : global::System.Data.TypedTableBase<ConsultaRow> {
             
             private global::System.Data.DataColumn columnID_CONSULTA;
             
-            private global::System.Data.DataColumn columnNOME_PACIENTE;
+            private global::System.Data.DataColumn columnID_MEDICO;
             
-            private global::System.Data.DataColumn columnNOME_MEDICO;
+            private global::System.Data.DataColumn columnID_PACIENTE;
             
             private global::System.Data.DataColumn columnDATA;
             
@@ -361,8 +375,8 @@ namespace ControleConsultorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ConsultasDataTable() {
-                this.TableName = "Consultas";
+            public ConsultaDataTable() {
+                this.TableName = "Consulta";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -370,7 +384,7 @@ namespace ControleConsultorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal ConsultasDataTable(global::System.Data.DataTable table) {
+            internal ConsultaDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -387,7 +401,7 @@ namespace ControleConsultorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected ConsultasDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ConsultaDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -402,17 +416,17 @@ namespace ControleConsultorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn NOME_PACIENTEColumn {
+            public global::System.Data.DataColumn ID_MEDICOColumn {
                 get {
-                    return this.columnNOME_PACIENTE;
+                    return this.columnID_MEDICO;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn NOME_MEDICOColumn {
+            public global::System.Data.DataColumn ID_PACIENTEColumn {
                 get {
-                    return this.columnNOME_MEDICO;
+                    return this.columnID_PACIENTE;
                 }
             }
             
@@ -443,56 +457,62 @@ namespace ControleConsultorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ConsultasRow this[int index] {
+            public ConsultaRow this[int index] {
                 get {
-                    return ((ConsultasRow)(this.Rows[index]));
+                    return ((ConsultaRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event ConsultasRowChangeEventHandler ConsultasRowChanging;
+            public event ConsultaRowChangeEventHandler ConsultaRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event ConsultasRowChangeEventHandler ConsultasRowChanged;
+            public event ConsultaRowChangeEventHandler ConsultaRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event ConsultasRowChangeEventHandler ConsultasRowDeleting;
+            public event ConsultaRowChangeEventHandler ConsultaRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event ConsultasRowChangeEventHandler ConsultasRowDeleted;
+            public event ConsultaRowChangeEventHandler ConsultaRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddConsultasRow(ConsultasRow row) {
+            public void AddConsultaRow(ConsultaRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ConsultasRow AddConsultasRow(string NOME_PACIENTE, string NOME_MEDICO, System.DateTime DATA, System.DateTime HORARIO) {
-                ConsultasRow rowConsultasRow = ((ConsultasRow)(this.NewRow()));
+            public ConsultaRow AddConsultaRow(MedicoRow parentMedicoRowByFK_CONSULTA_MEDICO, PacienteRow parentPacienteRowByFK_CONSULTA_PACIENTE, System.DateTime DATA, System.DateTime HORARIO) {
+                ConsultaRow rowConsultaRow = ((ConsultaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        NOME_PACIENTE,
-                        NOME_MEDICO,
+                        null,
+                        null,
                         DATA,
                         HORARIO};
-                rowConsultasRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowConsultasRow);
-                return rowConsultasRow;
+                if ((parentMedicoRowByFK_CONSULTA_MEDICO != null)) {
+                    columnValuesArray[1] = parentMedicoRowByFK_CONSULTA_MEDICO[0];
+                }
+                if ((parentPacienteRowByFK_CONSULTA_PACIENTE != null)) {
+                    columnValuesArray[2] = parentPacienteRowByFK_CONSULTA_PACIENTE[0];
+                }
+                rowConsultaRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowConsultaRow);
+                return rowConsultaRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ConsultasRow FindByID_CONSULTA(int ID_CONSULTA) {
-                return ((ConsultasRow)(this.Rows.Find(new object[] {
+            public ConsultaRow FindByID_CONSULTA(int ID_CONSULTA) {
+                return ((ConsultaRow)(this.Rows.Find(new object[] {
                             ID_CONSULTA})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                ConsultasDataTable cln = ((ConsultasDataTable)(base.Clone()));
+                ConsultaDataTable cln = ((ConsultaDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -500,15 +520,15 @@ namespace ControleConsultorio {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new ConsultasDataTable();
+                return new ConsultaDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
                 this.columnID_CONSULTA = base.Columns["ID_CONSULTA"];
-                this.columnNOME_PACIENTE = base.Columns["NOME_PACIENTE"];
-                this.columnNOME_MEDICO = base.Columns["NOME_MEDICO"];
+                this.columnID_MEDICO = base.Columns["ID_MEDICO"];
+                this.columnID_PACIENTE = base.Columns["ID_PACIENTE"];
                 this.columnDATA = base.Columns["DATA"];
                 this.columnHORARIO = base.Columns["HORARIO"];
             }
@@ -518,10 +538,10 @@ namespace ControleConsultorio {
             private void InitClass() {
                 this.columnID_CONSULTA = new global::System.Data.DataColumn("ID_CONSULTA", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID_CONSULTA);
-                this.columnNOME_PACIENTE = new global::System.Data.DataColumn("NOME_PACIENTE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNOME_PACIENTE);
-                this.columnNOME_MEDICO = new global::System.Data.DataColumn("NOME_MEDICO", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNOME_MEDICO);
+                this.columnID_MEDICO = new global::System.Data.DataColumn("ID_MEDICO", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID_MEDICO);
+                this.columnID_PACIENTE = new global::System.Data.DataColumn("ID_PACIENTE", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID_PACIENTE);
                 this.columnDATA = new global::System.Data.DataColumn("DATA", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDATA);
                 this.columnHORARIO = new global::System.Data.DataColumn("HORARIO", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -534,36 +554,32 @@ namespace ControleConsultorio {
                 this.columnID_CONSULTA.AllowDBNull = false;
                 this.columnID_CONSULTA.ReadOnly = true;
                 this.columnID_CONSULTA.Unique = true;
-                this.columnNOME_PACIENTE.AllowDBNull = false;
-                this.columnNOME_PACIENTE.MaxLength = 50;
-                this.columnNOME_MEDICO.AllowDBNull = false;
-                this.columnNOME_MEDICO.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ConsultasRow NewConsultasRow() {
-                return ((ConsultasRow)(this.NewRow()));
+            public ConsultaRow NewConsultaRow() {
+                return ((ConsultaRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new ConsultasRow(builder);
+                return new ConsultaRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(ConsultasRow);
+                return typeof(ConsultaRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.ConsultasRowChanged != null)) {
-                    this.ConsultasRowChanged(this, new ConsultasRowChangeEvent(((ConsultasRow)(e.Row)), e.Action));
+                if ((this.ConsultaRowChanged != null)) {
+                    this.ConsultaRowChanged(this, new ConsultaRowChangeEvent(((ConsultaRow)(e.Row)), e.Action));
                 }
             }
             
@@ -571,8 +587,8 @@ namespace ControleConsultorio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.ConsultasRowChanging != null)) {
-                    this.ConsultasRowChanging(this, new ConsultasRowChangeEvent(((ConsultasRow)(e.Row)), e.Action));
+                if ((this.ConsultaRowChanging != null)) {
+                    this.ConsultaRowChanging(this, new ConsultaRowChangeEvent(((ConsultaRow)(e.Row)), e.Action));
                 }
             }
             
@@ -580,8 +596,8 @@ namespace ControleConsultorio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.ConsultasRowDeleted != null)) {
-                    this.ConsultasRowDeleted(this, new ConsultasRowChangeEvent(((ConsultasRow)(e.Row)), e.Action));
+                if ((this.ConsultaRowDeleted != null)) {
+                    this.ConsultaRowDeleted(this, new ConsultaRowChangeEvent(((ConsultaRow)(e.Row)), e.Action));
                 }
             }
             
@@ -589,14 +605,14 @@ namespace ControleConsultorio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.ConsultasRowDeleting != null)) {
-                    this.ConsultasRowDeleting(this, new ConsultasRowChangeEvent(((ConsultasRow)(e.Row)), e.Action));
+                if ((this.ConsultaRowDeleting != null)) {
+                    this.ConsultaRowDeleting(this, new ConsultaRowChangeEvent(((ConsultaRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveConsultasRow(ConsultasRow row) {
+            public void RemoveConsultaRow(ConsultaRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -623,7 +639,7 @@ namespace ControleConsultorio {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "ConsultasDataTable";
+                attribute2.FixedValue = "ConsultaDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1368,47 +1384,57 @@ namespace ControleConsultorio {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class ConsultasRow : global::System.Data.DataRow {
+        public partial class ConsultaRow : global::System.Data.DataRow {
             
-            private ConsultasDataTable tableConsultas;
+            private ConsultaDataTable tableConsulta;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal ConsultasRow(global::System.Data.DataRowBuilder rb) : 
+            internal ConsultaRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableConsultas = ((ConsultasDataTable)(this.Table));
+                this.tableConsulta = ((ConsultaDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int ID_CONSULTA {
                 get {
-                    return ((int)(this[this.tableConsultas.ID_CONSULTAColumn]));
+                    return ((int)(this[this.tableConsulta.ID_CONSULTAColumn]));
                 }
                 set {
-                    this[this.tableConsultas.ID_CONSULTAColumn] = value;
+                    this[this.tableConsulta.ID_CONSULTAColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string NOME_PACIENTE {
+            public int ID_MEDICO {
                 get {
-                    return ((string)(this[this.tableConsultas.NOME_PACIENTEColumn]));
+                    try {
+                        return ((int)(this[this.tableConsulta.ID_MEDICOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'ID_MEDICO\' na tabela \'Consulta\' é DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tableConsultas.NOME_PACIENTEColumn] = value;
+                    this[this.tableConsulta.ID_MEDICOColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string NOME_MEDICO {
+            public int ID_PACIENTE {
                 get {
-                    return ((string)(this[this.tableConsultas.NOME_MEDICOColumn]));
+                    try {
+                        return ((int)(this[this.tableConsulta.ID_PACIENTEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'ID_PACIENTE\' na tabela \'Consulta\' é DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tableConsultas.NOME_MEDICOColumn] = value;
+                    this[this.tableConsulta.ID_PACIENTEColumn] = value;
                 }
             }
             
@@ -1417,14 +1443,14 @@ namespace ControleConsultorio {
             public System.DateTime DATA {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableConsultas.DATAColumn]));
+                        return ((global::System.DateTime)(this[this.tableConsulta.DATAColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("O valor da coluna \'DATA\' na tabela \'Consultas\' é DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'DATA\' na tabela \'Consulta\' é DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableConsultas.DATAColumn] = value;
+                    this[this.tableConsulta.DATAColumn] = value;
                 }
             }
             
@@ -1433,39 +1459,85 @@ namespace ControleConsultorio {
             public System.DateTime HORARIO {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableConsultas.HORARIOColumn]));
+                        return ((global::System.DateTime)(this[this.tableConsulta.HORARIOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("O valor da coluna \'HORARIO\' na tabela \'Consultas\' é DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'HORARIO\' na tabela \'Consulta\' é DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableConsultas.HORARIOColumn] = value;
+                    this[this.tableConsulta.HORARIOColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public MedicoRow MedicoRow {
+                get {
+                    return ((MedicoRow)(this.GetParentRow(this.Table.ParentRelations["FK_CONSULTA_MEDICO"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_CONSULTA_MEDICO"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public PacienteRow PacienteRow {
+                get {
+                    return ((PacienteRow)(this.GetParentRow(this.Table.ParentRelations["FK_CONSULTA_PACIENTE"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_CONSULTA_PACIENTE"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsID_MEDICONull() {
+                return this.IsNull(this.tableConsulta.ID_MEDICOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetID_MEDICONull() {
+                this[this.tableConsulta.ID_MEDICOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsID_PACIENTENull() {
+                return this.IsNull(this.tableConsulta.ID_PACIENTEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetID_PACIENTENull() {
+                this[this.tableConsulta.ID_PACIENTEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsDATANull() {
-                return this.IsNull(this.tableConsultas.DATAColumn);
+                return this.IsNull(this.tableConsulta.DATAColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetDATANull() {
-                this[this.tableConsultas.DATAColumn] = global::System.Convert.DBNull;
+                this[this.tableConsulta.DATAColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsHORARIONull() {
-                return this.IsNull(this.tableConsultas.HORARIOColumn);
+                return this.IsNull(this.tableConsulta.HORARIOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetHORARIONull() {
-                this[this.tableConsultas.HORARIOColumn] = global::System.Convert.DBNull;
+                this[this.tableConsulta.HORARIOColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1576,6 +1648,17 @@ namespace ControleConsultorio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetVALOR_CONSULTANull() {
                 this[this.tableMedico.VALOR_CONSULTAColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ConsultaRow[] GetConsultaRows() {
+                if ((this.Table.ChildRelations["FK_CONSULTA_MEDICO"] == null)) {
+                    return new ConsultaRow[0];
+                }
+                else {
+                    return ((ConsultaRow[])(base.GetChildRows(this.Table.ChildRelations["FK_CONSULTA_MEDICO"])));
+                }
             }
         }
         
@@ -1855,28 +1938,39 @@ namespace ControleConsultorio {
             public void SetCELULARNull() {
                 this[this.tablePaciente.CELULARColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ConsultaRow[] GetConsultaRows() {
+                if ((this.Table.ChildRelations["FK_CONSULTA_PACIENTE"] == null)) {
+                    return new ConsultaRow[0];
+                }
+                else {
+                    return ((ConsultaRow[])(base.GetChildRows(this.Table.ChildRelations["FK_CONSULTA_PACIENTE"])));
+                }
+            }
         }
         
         /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class ConsultasRowChangeEvent : global::System.EventArgs {
+        public class ConsultaRowChangeEvent : global::System.EventArgs {
             
-            private ConsultasRow eventRow;
+            private ConsultaRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ConsultasRowChangeEvent(ConsultasRow row, global::System.Data.DataRowAction action) {
+            public ConsultaRowChangeEvent(ConsultaRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ConsultasRow Row {
+            public ConsultaRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1972,7 +2066,7 @@ namespace ControleConsultorio.Consultorio_CsDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class ConsultasTableAdapter : global::System.ComponentModel.Component {
+    public partial class ConsultaTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -1986,7 +2080,7 @@ namespace ControleConsultorio.Consultorio_CsDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public ConsultasTableAdapter() {
+        public ConsultaTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -2083,47 +2177,50 @@ namespace ControleConsultorio.Consultorio_CsDataSetTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Consultas";
+            tableMapping.DataSetTable = "Consulta";
             tableMapping.ColumnMappings.Add("ID_CONSULTA", "ID_CONSULTA");
-            tableMapping.ColumnMappings.Add("NOME_PACIENTE", "NOME_PACIENTE");
-            tableMapping.ColumnMappings.Add("NOME_MEDICO", "NOME_MEDICO");
+            tableMapping.ColumnMappings.Add("ID_MEDICO", "ID_MEDICO");
+            tableMapping.ColumnMappings.Add("ID_PACIENTE", "ID_PACIENTE");
             tableMapping.ColumnMappings.Add("DATA", "DATA");
             tableMapping.ColumnMappings.Add("HORARIO", "HORARIO");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Consultas] WHERE (([ID_CONSULTA] = @Original_ID_CONSULTA) AND ([NOME_PACIENTE] = @Original_NOME_PACIENTE) AND ([NOME_MEDICO] = @Original_NOME_MEDICO) AND ((@IsNull_DATA = 1 AND [DATA] IS NULL) OR ([DATA] = @Original_DATA)) AND ((@IsNull_HORARIO = 1 AND [HORARIO] IS NULL) OR ([HORARIO] = @Original_HORARIO)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Consulta] WHERE (([ID_CONSULTA] = @Original_ID_CONSULTA) AND ((@IsNull_ID_MEDICO = 1 AND [ID_MEDICO] IS NULL) OR ([ID_MEDICO] = @Original_ID_MEDICO)) AND ((@IsNull_ID_PACIENTE = 1 AND [ID_PACIENTE] IS NULL) OR ([ID_PACIENTE] = @Original_ID_PACIENTE)) AND ((@IsNull_DATA = 1 AND [DATA] IS NULL) OR ([DATA] = @Original_DATA)) AND ((@IsNull_HORARIO = 1 AND [HORARIO] IS NULL) OR ([HORARIO] = @Original_HORARIO)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_CONSULTA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_CONSULTA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NOME_PACIENTE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_PACIENTE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NOME_MEDICO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_MEDICO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ID_MEDICO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_MEDICO", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_MEDICO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_MEDICO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ID_PACIENTE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_PACIENTE", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_PACIENTE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_PACIENTE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DATA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DATA", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_HORARIO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HORARIO", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_HORARIO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HORARIO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Consultas] ([NOME_PACIENTE], [NOME_MEDICO], [DATA], [HORARIO])" +
-                " VALUES (@NOME_PACIENTE, @NOME_MEDICO, @DATA, @HORARIO);\r\nSELECT ID_CONSULTA, NO" +
-                "ME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHERE (ID_CONSULTA = SCOP" +
-                "E_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Consulta] ([ID_MEDICO], [ID_PACIENTE], [DATA], [HORARIO]) VALU" +
+                "ES (@ID_MEDICO, @ID_PACIENTE, @DATA, @HORARIO);\r\nSELECT ID_CONSULTA, ID_MEDICO, " +
+                "ID_PACIENTE, DATA, HORARIO FROM Consulta WHERE (ID_CONSULTA = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NOME_PACIENTE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_PACIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NOME_MEDICO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_MEDICO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_MEDICO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_MEDICO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_PACIENTE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_PACIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DATA", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@HORARIO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HORARIO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Consultas] SET [NOME_PACIENTE] = @NOME_PACIENTE, [NOME_MEDICO] = @NOME_MEDICO, [DATA] = @DATA, [HORARIO] = @HORARIO WHERE (([ID_CONSULTA] = @Original_ID_CONSULTA) AND ([NOME_PACIENTE] = @Original_NOME_PACIENTE) AND ([NOME_MEDICO] = @Original_NOME_MEDICO) AND ((@IsNull_DATA = 1 AND [DATA] IS NULL) OR ([DATA] = @Original_DATA)) AND ((@IsNull_HORARIO = 1 AND [HORARIO] IS NULL) OR ([HORARIO] = @Original_HORARIO)));
-SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHERE (ID_CONSULTA = @ID_CONSULTA)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Consulta] SET [ID_MEDICO] = @ID_MEDICO, [ID_PACIENTE] = @ID_PACIENTE, [DATA] = @DATA, [HORARIO] = @HORARIO WHERE (([ID_CONSULTA] = @Original_ID_CONSULTA) AND ((@IsNull_ID_MEDICO = 1 AND [ID_MEDICO] IS NULL) OR ([ID_MEDICO] = @Original_ID_MEDICO)) AND ((@IsNull_ID_PACIENTE = 1 AND [ID_PACIENTE] IS NULL) OR ([ID_PACIENTE] = @Original_ID_PACIENTE)) AND ((@IsNull_DATA = 1 AND [DATA] IS NULL) OR ([DATA] = @Original_DATA)) AND ((@IsNull_HORARIO = 1 AND [HORARIO] IS NULL) OR ([HORARIO] = @Original_HORARIO)));
+SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO FROM Consulta WHERE (ID_CONSULTA = @ID_CONSULTA)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NOME_PACIENTE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_PACIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NOME_MEDICO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_MEDICO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_MEDICO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_MEDICO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_PACIENTE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_PACIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DATA", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@HORARIO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HORARIO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_CONSULTA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_CONSULTA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NOME_PACIENTE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_PACIENTE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NOME_MEDICO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_MEDICO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ID_MEDICO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_MEDICO", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_MEDICO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_MEDICO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ID_PACIENTE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_PACIENTE", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_PACIENTE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_PACIENTE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DATA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DATA", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_HORARIO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HORARIO", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -2144,7 +2241,7 @@ SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHE
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM dbo.Consultas";
+            this._commandCollection[0].CommandText = "SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO FROM dbo.Consulta";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2152,7 +2249,7 @@ SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Consultorio_CsDataSet.ConsultasDataTable dataTable) {
+        public virtual int Fill(Consultorio_CsDataSet.ConsultaDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -2165,9 +2262,9 @@ SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Consultorio_CsDataSet.ConsultasDataTable GetData() {
+        public virtual Consultorio_CsDataSet.ConsultaDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Consultorio_CsDataSet.ConsultasDataTable dataTable = new Consultorio_CsDataSet.ConsultasDataTable();
+            Consultorio_CsDataSet.ConsultaDataTable dataTable = new Consultorio_CsDataSet.ConsultaDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -2175,7 +2272,7 @@ SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHE
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Consultorio_CsDataSet.ConsultasDataTable dataTable) {
+        public virtual int Update(Consultorio_CsDataSet.ConsultaDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
@@ -2183,7 +2280,7 @@ SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(Consultorio_CsDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "Consultas");
+            return this.Adapter.Update(dataSet, "Consulta");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2205,35 +2302,39 @@ SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID_CONSULTA, string Original_NOME_PACIENTE, string Original_NOME_MEDICO, global::System.Nullable<global::System.DateTime> Original_DATA, global::System.Nullable<global::System.DateTime> Original_HORARIO) {
+        public virtual int Delete(int Original_ID_CONSULTA, global::System.Nullable<int> Original_ID_MEDICO, global::System.Nullable<int> Original_ID_PACIENTE, global::System.Nullable<global::System.DateTime> Original_DATA, global::System.Nullable<global::System.DateTime> Original_HORARIO) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID_CONSULTA));
-            if ((Original_NOME_PACIENTE == null)) {
-                throw new global::System.ArgumentNullException("Original_NOME_PACIENTE");
+            if ((Original_ID_MEDICO.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_ID_MEDICO.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_NOME_PACIENTE));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((Original_NOME_MEDICO == null)) {
-                throw new global::System.ArgumentNullException("Original_NOME_MEDICO");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_NOME_MEDICO));
-            }
-            if ((Original_DATA.HasValue == true)) {
+            if ((Original_ID_PACIENTE.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(Original_DATA.Value));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_ID_PACIENTE.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((Original_HORARIO.HasValue == true)) {
+            if ((Original_DATA.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_HORARIO.Value));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_DATA.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((Original_HORARIO.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((System.DateTime)(Original_HORARIO.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2255,18 +2356,18 @@ SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string NOME_PACIENTE, string NOME_MEDICO, global::System.Nullable<global::System.DateTime> DATA, global::System.Nullable<global::System.DateTime> HORARIO) {
-            if ((NOME_PACIENTE == null)) {
-                throw new global::System.ArgumentNullException("NOME_PACIENTE");
+        public virtual int Insert(global::System.Nullable<int> ID_MEDICO, global::System.Nullable<int> ID_PACIENTE, global::System.Nullable<global::System.DateTime> DATA, global::System.Nullable<global::System.DateTime> HORARIO) {
+            if ((ID_MEDICO.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ID_MEDICO.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(NOME_PACIENTE));
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((NOME_MEDICO == null)) {
-                throw new global::System.ArgumentNullException("NOME_MEDICO");
+            if ((ID_PACIENTE.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(ID_PACIENTE.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(NOME_MEDICO));
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             if ((DATA.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(DATA.Value));
@@ -2300,18 +2401,18 @@ SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string NOME_PACIENTE, string NOME_MEDICO, global::System.Nullable<global::System.DateTime> DATA, global::System.Nullable<global::System.DateTime> HORARIO, int Original_ID_CONSULTA, string Original_NOME_PACIENTE, string Original_NOME_MEDICO, global::System.Nullable<global::System.DateTime> Original_DATA, global::System.Nullable<global::System.DateTime> Original_HORARIO, int ID_CONSULTA) {
-            if ((NOME_PACIENTE == null)) {
-                throw new global::System.ArgumentNullException("NOME_PACIENTE");
+        public virtual int Update(global::System.Nullable<int> ID_MEDICO, global::System.Nullable<int> ID_PACIENTE, global::System.Nullable<global::System.DateTime> DATA, global::System.Nullable<global::System.DateTime> HORARIO, int Original_ID_CONSULTA, global::System.Nullable<int> Original_ID_MEDICO, global::System.Nullable<int> Original_ID_PACIENTE, global::System.Nullable<global::System.DateTime> Original_DATA, global::System.Nullable<global::System.DateTime> Original_HORARIO, int ID_CONSULTA) {
+            if ((ID_MEDICO.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ID_MEDICO.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(NOME_PACIENTE));
+                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((NOME_MEDICO == null)) {
-                throw new global::System.ArgumentNullException("NOME_MEDICO");
+            if ((ID_PACIENTE.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(ID_PACIENTE.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(NOME_MEDICO));
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             if ((DATA.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(DATA.Value));
@@ -2326,35 +2427,39 @@ SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHE
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_ID_CONSULTA));
-            if ((Original_NOME_PACIENTE == null)) {
-                throw new global::System.ArgumentNullException("Original_NOME_PACIENTE");
+            if ((Original_ID_MEDICO.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ID_MEDICO.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_NOME_PACIENTE));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((Original_NOME_MEDICO == null)) {
-                throw new global::System.ArgumentNullException("Original_NOME_MEDICO");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_NOME_MEDICO));
-            }
-            if ((Original_DATA.HasValue == true)) {
+            if ((Original_ID_PACIENTE.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(Original_DATA.Value));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_ID_PACIENTE.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((Original_HORARIO.HasValue == true)) {
+            if ((Original_DATA.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(Original_HORARIO.Value));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(Original_DATA.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(ID_CONSULTA));
+            if ((Original_HORARIO.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_HORARIO.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(ID_CONSULTA));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2375,8 +2480,8 @@ SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string NOME_PACIENTE, string NOME_MEDICO, global::System.Nullable<global::System.DateTime> DATA, global::System.Nullable<global::System.DateTime> HORARIO, int Original_ID_CONSULTA, string Original_NOME_PACIENTE, string Original_NOME_MEDICO, global::System.Nullable<global::System.DateTime> Original_DATA, global::System.Nullable<global::System.DateTime> Original_HORARIO) {
-            return this.Update(NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO, Original_ID_CONSULTA, Original_NOME_PACIENTE, Original_NOME_MEDICO, Original_DATA, Original_HORARIO, Original_ID_CONSULTA);
+        public virtual int Update(global::System.Nullable<int> ID_MEDICO, global::System.Nullable<int> ID_PACIENTE, global::System.Nullable<global::System.DateTime> DATA, global::System.Nullable<global::System.DateTime> HORARIO, int Original_ID_CONSULTA, global::System.Nullable<int> Original_ID_MEDICO, global::System.Nullable<int> Original_ID_PACIENTE, global::System.Nullable<global::System.DateTime> Original_DATA, global::System.Nullable<global::System.DateTime> Original_HORARIO) {
+            return this.Update(ID_MEDICO, ID_PACIENTE, DATA, HORARIO, Original_ID_CONSULTA, Original_ID_MEDICO, Original_ID_PACIENTE, Original_DATA, Original_HORARIO, Original_ID_CONSULTA);
         }
     }
     
@@ -3428,7 +3533,7 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
         
         private UpdateOrderOption _updateOrder;
         
-        private ConsultasTableAdapter _consultasTableAdapter;
+        private ConsultaTableAdapter _consultaTableAdapter;
         
         private MedicoTableAdapter _medicoTableAdapter;
         
@@ -3454,12 +3559,12 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public ConsultasTableAdapter ConsultasTableAdapter {
+        public ConsultaTableAdapter ConsultaTableAdapter {
             get {
-                return this._consultasTableAdapter;
+                return this._consultaTableAdapter;
             }
             set {
-                this._consultasTableAdapter = value;
+                this._consultaTableAdapter = value;
             }
         }
         
@@ -3510,9 +3615,9 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._consultasTableAdapter != null) 
-                            && (this._consultasTableAdapter.Connection != null))) {
-                    return this._consultasTableAdapter.Connection;
+                if (((this._consultaTableAdapter != null) 
+                            && (this._consultaTableAdapter.Connection != null))) {
+                    return this._consultaTableAdapter.Connection;
                 }
                 if (((this._medicoTableAdapter != null) 
                             && (this._medicoTableAdapter.Connection != null))) {
@@ -3535,7 +3640,7 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._consultasTableAdapter != null)) {
+                if ((this._consultaTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._medicoTableAdapter != null)) {
@@ -3555,15 +3660,6 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateUpdatedRows(Consultorio_CsDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._consultasTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Consultas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._consultasTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._medicoTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Medico.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -3582,6 +3678,15 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._consultaTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Consulta.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._consultaTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -3592,14 +3697,6 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateInsertedRows(Consultorio_CsDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._consultasTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Consultas.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._consultasTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._medicoTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Medico.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -3616,6 +3713,14 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._consultaTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Consulta.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._consultaTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -3626,6 +3731,14 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateDeletedRows(Consultorio_CsDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._consultaTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Consulta.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._consultaTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._pacienteTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Paciente.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -3639,14 +3752,6 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._medicoTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._consultasTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Consultas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._consultasTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -3689,8 +3794,8 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
-            if (((this._consultasTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._consultasTableAdapter.Connection) == false))) {
+            if (((this._consultaTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._consultaTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("Todos os TableAdapters gerenciados por um TableAdapterManager devem usar a mesma " +
                         "cadeia de conexão.");
             }
@@ -3736,13 +3841,13 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._consultasTableAdapter != null)) {
-                    revertConnections.Add(this._consultasTableAdapter, this._consultasTableAdapter.Connection);
-                    this._consultasTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._consultasTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._consultasTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._consultasTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._consultasTableAdapter.Adapter);
+                if ((this._consultaTableAdapter != null)) {
+                    revertConnections.Add(this._consultaTableAdapter, this._consultaTableAdapter.Connection);
+                    this._consultaTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._consultaTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._consultaTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._consultaTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._consultaTableAdapter.Adapter);
                     }
                 }
                 if ((this._medicoTableAdapter != null)) {
@@ -3821,9 +3926,9 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
                 if (workConnOpened) {
                     workConnection.Close();
                 }
-                if ((this._consultasTableAdapter != null)) {
-                    this._consultasTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._consultasTableAdapter]));
-                    this._consultasTableAdapter.Transaction = null;
+                if ((this._consultaTableAdapter != null)) {
+                    this._consultaTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._consultaTableAdapter]));
+                    this._consultaTableAdapter.Transaction = null;
                 }
                 if ((this._medicoTableAdapter != null)) {
                     this._medicoTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._medicoTableAdapter]));

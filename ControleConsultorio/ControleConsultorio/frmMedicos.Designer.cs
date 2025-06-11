@@ -133,7 +133,7 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.ConsultasTableAdapter = null;
+            this.tableAdapterManager.ConsultaTableAdapter = null;
             this.tableAdapterManager.MedicoTableAdapter = this.medicoTableAdapter;
             this.tableAdapterManager.UpdateOrder = ControleConsultorio.Consultorio_CsDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 

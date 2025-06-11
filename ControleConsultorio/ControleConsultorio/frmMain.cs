@@ -28,5 +28,11 @@ namespace ControleConsultorio
             frmPacientes novoPaciente = new frmPacientes();
             novoPaciente.ShowDialog();
         }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            frmConsultas novoConsulta = new frmConsultas();
+            novoConsulta.ShowDialog();
+        }
     }
 }
