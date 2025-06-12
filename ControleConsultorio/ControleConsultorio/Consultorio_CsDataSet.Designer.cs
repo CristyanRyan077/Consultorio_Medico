@@ -373,6 +373,8 @@ namespace ControleConsultorio {
             
             private global::System.Data.DataColumn columnHORARIO;
             
+            private global::System.Data.DataColumn columnRETORNO;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ConsultaDataTable() {
@@ -448,6 +450,14 @@ namespace ControleConsultorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RETORNOColumn {
+                get {
+                    return this.columnRETORNO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -483,14 +493,15 @@ namespace ControleConsultorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ConsultaRow AddConsultaRow(MedicoRow parentMedicoRowByFK_CONSULTA_MEDICO, PacienteRow parentPacienteRowByFK_CONSULTA_PACIENTE, System.DateTime DATA, System.DateTime HORARIO) {
+            public ConsultaRow AddConsultaRow(MedicoRow parentMedicoRowByFK_CONSULTA_MEDICO, PacienteRow parentPacienteRowByFK_CONSULTA_PACIENTE, System.DateTime DATA, System.DateTime HORARIO, string RETORNO) {
                 ConsultaRow rowConsultaRow = ((ConsultaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
                         null,
                         DATA,
-                        HORARIO};
+                        HORARIO,
+                        RETORNO};
                 if ((parentMedicoRowByFK_CONSULTA_MEDICO != null)) {
                     columnValuesArray[1] = parentMedicoRowByFK_CONSULTA_MEDICO[0];
                 }
@@ -531,6 +542,7 @@ namespace ControleConsultorio {
                 this.columnID_PACIENTE = base.Columns["ID_PACIENTE"];
                 this.columnDATA = base.Columns["DATA"];
                 this.columnHORARIO = base.Columns["HORARIO"];
+                this.columnRETORNO = base.Columns["RETORNO"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -546,6 +558,8 @@ namespace ControleConsultorio {
                 base.Columns.Add(this.columnDATA);
                 this.columnHORARIO = new global::System.Data.DataColumn("HORARIO", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHORARIO);
+                this.columnRETORNO = new global::System.Data.DataColumn("RETORNO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRETORNO);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID_CONSULTA}, true));
                 this.columnID_CONSULTA.AutoIncrement = true;
@@ -554,6 +568,7 @@ namespace ControleConsultorio {
                 this.columnID_CONSULTA.AllowDBNull = false;
                 this.columnID_CONSULTA.ReadOnly = true;
                 this.columnID_CONSULTA.Unique = true;
+                this.columnRETORNO.MaxLength = 10;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1163,7 +1178,7 @@ namespace ControleConsultorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public PacienteRow AddPacienteRow(string NOME_PACIENTE, string ENDERECO, int NUMERO, string BAIRRO, string CIDADE, int CEP, string SEXO, string TELEFONE, string CELULAR) {
+            public PacienteRow AddPacienteRow(string NOME_PACIENTE, string ENDERECO, int NUMERO, string BAIRRO, string CIDADE, string CEP, string SEXO, string TELEFONE, string CELULAR) {
                 PacienteRow rowPacienteRow = ((PacienteRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1232,7 +1247,7 @@ namespace ControleConsultorio {
                 base.Columns.Add(this.columnBAIRRO);
                 this.columnCIDADE = new global::System.Data.DataColumn("CIDADE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCIDADE);
-                this.columnCEP = new global::System.Data.DataColumn("CEP", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnCEP = new global::System.Data.DataColumn("CEP", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCEP);
                 this.columnSEXO = new global::System.Data.DataColumn("SEXO", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSEXO);
@@ -1252,9 +1267,10 @@ namespace ControleConsultorio {
                 this.columnENDERECO.MaxLength = 50;
                 this.columnBAIRRO.MaxLength = 50;
                 this.columnCIDADE.MaxLength = 50;
+                this.columnCEP.MaxLength = 50;
                 this.columnSEXO.MaxLength = 10;
-                this.columnTELEFONE.MaxLength = 16;
-                this.columnCELULAR.MaxLength = 10;
+                this.columnTELEFONE.MaxLength = 50;
+                this.columnCELULAR.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1472,6 +1488,22 @@ namespace ControleConsultorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string RETORNO {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsulta.RETORNOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'RETORNO\' na tabela \'Consulta\' é DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsulta.RETORNOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public MedicoRow MedicoRow {
                 get {
                     return ((MedicoRow)(this.GetParentRow(this.Table.ParentRelations["FK_CONSULTA_MEDICO"])));
@@ -1538,6 +1570,18 @@ namespace ControleConsultorio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetHORARIONull() {
                 this[this.tableConsulta.HORARIOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRETORNONull() {
+                return this.IsNull(this.tableConsulta.RETORNOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRETORNONull() {
+                this[this.tableConsulta.RETORNOColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1769,10 +1813,10 @@ namespace ControleConsultorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int CEP {
+            public string CEP {
                 get {
                     try {
-                        return ((int)(this[this.tablePaciente.CEPColumn]));
+                        return ((string)(this[this.tablePaciente.CEPColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("O valor da coluna \'CEP\' na tabela \'Paciente\' é DBNull.", e);
@@ -2183,10 +2227,11 @@ namespace ControleConsultorio.Consultorio_CsDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("ID_PACIENTE", "ID_PACIENTE");
             tableMapping.ColumnMappings.Add("DATA", "DATA");
             tableMapping.ColumnMappings.Add("HORARIO", "HORARIO");
+            tableMapping.ColumnMappings.Add("RETORNO", "RETORNO");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Consulta] WHERE (([ID_CONSULTA] = @Original_ID_CONSULTA) AND ((@IsNull_ID_MEDICO = 1 AND [ID_MEDICO] IS NULL) OR ([ID_MEDICO] = @Original_ID_MEDICO)) AND ((@IsNull_ID_PACIENTE = 1 AND [ID_PACIENTE] IS NULL) OR ([ID_PACIENTE] = @Original_ID_PACIENTE)) AND ((@IsNull_DATA = 1 AND [DATA] IS NULL) OR ([DATA] = @Original_DATA)) AND ((@IsNull_HORARIO = 1 AND [HORARIO] IS NULL) OR ([HORARIO] = @Original_HORARIO)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Consulta] WHERE (([ID_CONSULTA] = @Original_ID_CONSULTA) AND ((@IsNull_ID_MEDICO = 1 AND [ID_MEDICO] IS NULL) OR ([ID_MEDICO] = @Original_ID_MEDICO)) AND ((@IsNull_ID_PACIENTE = 1 AND [ID_PACIENTE] IS NULL) OR ([ID_PACIENTE] = @Original_ID_PACIENTE)) AND ((@IsNull_DATA = 1 AND [DATA] IS NULL) OR ([DATA] = @Original_DATA)) AND ((@IsNull_HORARIO = 1 AND [HORARIO] IS NULL) OR ([HORARIO] = @Original_HORARIO)) AND ((@IsNull_RETORNO = 1 AND [RETORNO] IS NULL) OR ([RETORNO] = @Original_RETORNO)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_CONSULTA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_CONSULTA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ID_MEDICO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_MEDICO", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -2197,25 +2242,28 @@ namespace ControleConsultorio.Consultorio_CsDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DATA", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_HORARIO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HORARIO", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_HORARIO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HORARIO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_RETORNO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RETORNO", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RETORNO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RETORNO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Consulta] ([ID_MEDICO], [ID_PACIENTE], [DATA], [HORARIO]) VALU" +
-                "ES (@ID_MEDICO, @ID_PACIENTE, @DATA, @HORARIO);\r\nSELECT ID_CONSULTA, ID_MEDICO, " +
-                "ID_PACIENTE, DATA, HORARIO FROM Consulta WHERE (ID_CONSULTA = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Consulta] ([ID_MEDICO], [ID_PACIENTE], [DATA], [HORARIO], [RETORNO]) VALUES (@ID_MEDICO, @ID_PACIENTE, @DATA, @HORARIO, @RETORNO);
+SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO, Retorno FROM Consulta WHERE (ID_CONSULTA = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_MEDICO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_MEDICO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_PACIENTE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_PACIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DATA", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@HORARIO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HORARIO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETORNO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RETORNO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Consulta] SET [ID_MEDICO] = @ID_MEDICO, [ID_PACIENTE] = @ID_PACIENTE, [DATA] = @DATA, [HORARIO] = @HORARIO WHERE (([ID_CONSULTA] = @Original_ID_CONSULTA) AND ((@IsNull_ID_MEDICO = 1 AND [ID_MEDICO] IS NULL) OR ([ID_MEDICO] = @Original_ID_MEDICO)) AND ((@IsNull_ID_PACIENTE = 1 AND [ID_PACIENTE] IS NULL) OR ([ID_PACIENTE] = @Original_ID_PACIENTE)) AND ((@IsNull_DATA = 1 AND [DATA] IS NULL) OR ([DATA] = @Original_DATA)) AND ((@IsNull_HORARIO = 1 AND [HORARIO] IS NULL) OR ([HORARIO] = @Original_HORARIO)));
-SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO FROM Consulta WHERE (ID_CONSULTA = @ID_CONSULTA)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Consulta] SET [ID_MEDICO] = @ID_MEDICO, [ID_PACIENTE] = @ID_PACIENTE, [DATA] = @DATA, [HORARIO] = @HORARIO, [RETORNO] = @RETORNO WHERE (([ID_CONSULTA] = @Original_ID_CONSULTA) AND ((@IsNull_ID_MEDICO = 1 AND [ID_MEDICO] IS NULL) OR ([ID_MEDICO] = @Original_ID_MEDICO)) AND ((@IsNull_ID_PACIENTE = 1 AND [ID_PACIENTE] IS NULL) OR ([ID_PACIENTE] = @Original_ID_PACIENTE)) AND ((@IsNull_DATA = 1 AND [DATA] IS NULL) OR ([DATA] = @Original_DATA)) AND ((@IsNull_HORARIO = 1 AND [HORARIO] IS NULL) OR ([HORARIO] = @Original_HORARIO)) AND ((@IsNull_RETORNO = 1 AND [RETORNO] IS NULL) OR ([RETORNO] = @Original_RETORNO)));
+SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO, Retorno FROM Consulta WHERE (ID_CONSULTA = @ID_CONSULTA)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_MEDICO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_MEDICO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_PACIENTE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_PACIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DATA", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@HORARIO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HORARIO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETORNO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RETORNO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_CONSULTA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_CONSULTA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ID_MEDICO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_MEDICO", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_MEDICO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_MEDICO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -2225,6 +2273,8 @@ SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO FROM Consulta WHERE (I
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DATA", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_HORARIO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HORARIO", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_HORARIO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HORARIO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_RETORNO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RETORNO", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RETORNO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RETORNO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_CONSULTA", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID_CONSULTA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -2238,11 +2288,44 @@ SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO FROM Consulta WHERE (I
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO FROM dbo.Consulta";
+            this._commandCollection[0].CommandText = "SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO, RETORNO FROM dbo.Consu" +
+                "lta";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT        Consulta.ID_CONSULTA, Consulta.ID_MEDICO, Consulta.ID_PACIENTE, Consulta.DATA, Consulta.HORARIO, Consulta.Retorno, Medico.NOME_MEDICO, Paciente.NOME_PACIENTE
+FROM            Consulta INNER JOIN
+                         Medico ON Consulta.ID_MEDICO = Medico.ID_MEDICO INNER JOIN
+                         Paciente ON Consulta.ID_PACIENTE = Paciente.ID_PACIENTE
+WHERE        (Consulta.DATA >= @data)
+ORDER BY Consulta.DATA";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@data", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT        Consulta.ID_CONSULTA, Consulta.ID_MEDICO, Consulta.ID_PACIENTE, Consulta.DATA, Consulta.HORARIO, Consulta.Retorno, Paciente.NOME_PACIENTE, Medico.NOME_MEDICO
+FROM            Consulta INNER JOIN
+                         Medico ON Consulta.ID_MEDICO = Medico.ID_MEDICO INNER JOIN
+                         Paciente ON Consulta.ID_PACIENTE = Paciente.ID_PACIENTE
+WHERE        (Medico.NOME_MEDICO LIKE '%' + @nomeMedico + '%') AND (Consulta.DATA >= @Data1) AND (Consulta.DATA <= @Data2)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nomeMedico", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_MEDICO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Data1", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Data2", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = @"SELECT        Consulta.ID_CONSULTA, Consulta.ID_MEDICO, Consulta.ID_PACIENTE, Consulta.DATA, Consulta.HORARIO, Consulta.Retorno, Paciente.NOME_PACIENTE, Medico.NOME_MEDICO
+FROM            Consulta INNER JOIN
+                         Medico ON Consulta.ID_MEDICO = Medico.ID_MEDICO INNER JOIN
+                         Paciente ON Consulta.ID_PACIENTE = Paciente.ID_PACIENTE
+WHERE        (Paciente.NOME_PACIENTE LIKE '%' + @nomePaciente + '%') AND (Consulta.DATA >= @Data1) AND (Consulta.DATA <= @Data2)";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nomePaciente", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_PACIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Data1", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Data2", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2264,6 +2347,81 @@ SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO FROM Consulta WHERE (I
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual Consultorio_CsDataSet.ConsultaDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            Consultorio_CsDataSet.ConsultaDataTable dataTable = new Consultorio_CsDataSet.ConsultaDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual Consultorio_CsDataSet.ConsultaDataTable GetConsultas(global::System.Nullable<global::System.DateTime> data) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((data.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(data.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            Consultorio_CsDataSet.ConsultaDataTable dataTable = new Consultorio_CsDataSet.ConsultaDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual Consultorio_CsDataSet.ConsultaDataTable GetMedico(string nomeMedico, global::System.Nullable<global::System.DateTime> Data1, global::System.Nullable<global::System.DateTime> Data2) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((nomeMedico == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(nomeMedico));
+            }
+            if ((Data1.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(Data1.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((Data2.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(Data2.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            Consultorio_CsDataSet.ConsultaDataTable dataTable = new Consultorio_CsDataSet.ConsultaDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual Consultorio_CsDataSet.ConsultaDataTable GetPaciente(string nomePaciente, global::System.Nullable<global::System.DateTime> Data1, global::System.Nullable<global::System.DateTime> Data2) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((nomePaciente == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(nomePaciente));
+            }
+            if ((Data1.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(Data1.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((Data2.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(Data2.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
             Consultorio_CsDataSet.ConsultaDataTable dataTable = new Consultorio_CsDataSet.ConsultaDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -2302,7 +2460,7 @@ SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO FROM Consulta WHERE (I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID_CONSULTA, global::System.Nullable<int> Original_ID_MEDICO, global::System.Nullable<int> Original_ID_PACIENTE, global::System.Nullable<global::System.DateTime> Original_DATA, global::System.Nullable<global::System.DateTime> Original_HORARIO) {
+        public virtual int Delete(int Original_ID_CONSULTA, global::System.Nullable<int> Original_ID_MEDICO, global::System.Nullable<int> Original_ID_PACIENTE, global::System.Nullable<global::System.DateTime> Original_DATA, global::System.Nullable<global::System.DateTime> Original_HORARIO, string Original_RETORNO) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID_CONSULTA));
             if ((Original_ID_MEDICO.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -2336,6 +2494,13 @@ SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO FROM Consulta WHERE (I
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
+            if ((Original_RETORNO == null)) {
+                throw new global::System.ArgumentNullException("Original_RETORNO");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_RETORNO));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2356,7 +2521,7 @@ SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO FROM Consulta WHERE (I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> ID_MEDICO, global::System.Nullable<int> ID_PACIENTE, global::System.Nullable<global::System.DateTime> DATA, global::System.Nullable<global::System.DateTime> HORARIO) {
+        public virtual int Insert(global::System.Nullable<int> ID_MEDICO, global::System.Nullable<int> ID_PACIENTE, global::System.Nullable<global::System.DateTime> DATA, global::System.Nullable<global::System.DateTime> HORARIO, string RETORNO) {
             if ((ID_MEDICO.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ID_MEDICO.Value));
             }
@@ -2381,6 +2546,12 @@ SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO FROM Consulta WHERE (I
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
+            if ((RETORNO == null)) {
+                throw new global::System.ArgumentNullException("RETORNO");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(RETORNO));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2401,7 +2572,7 @@ SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO FROM Consulta WHERE (I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> ID_MEDICO, global::System.Nullable<int> ID_PACIENTE, global::System.Nullable<global::System.DateTime> DATA, global::System.Nullable<global::System.DateTime> HORARIO, int Original_ID_CONSULTA, global::System.Nullable<int> Original_ID_MEDICO, global::System.Nullable<int> Original_ID_PACIENTE, global::System.Nullable<global::System.DateTime> Original_DATA, global::System.Nullable<global::System.DateTime> Original_HORARIO, int ID_CONSULTA) {
+        public virtual int Update(global::System.Nullable<int> ID_MEDICO, global::System.Nullable<int> ID_PACIENTE, global::System.Nullable<global::System.DateTime> DATA, global::System.Nullable<global::System.DateTime> HORARIO, string RETORNO, int Original_ID_CONSULTA, global::System.Nullable<int> Original_ID_MEDICO, global::System.Nullable<int> Original_ID_PACIENTE, global::System.Nullable<global::System.DateTime> Original_DATA, global::System.Nullable<global::System.DateTime> Original_HORARIO, string Original_RETORNO, int ID_CONSULTA) {
             if ((ID_MEDICO.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ID_MEDICO.Value));
             }
@@ -2426,40 +2597,53 @@ SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO FROM Consulta WHERE (I
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_ID_CONSULTA));
-            if ((Original_ID_MEDICO.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ID_MEDICO.Value));
+            if ((RETORNO == null)) {
+                throw new global::System.ArgumentNullException("RETORNO");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(RETORNO));
+            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_ID_CONSULTA));
+            if ((Original_ID_MEDICO.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_ID_MEDICO.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             if ((Original_ID_PACIENTE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_ID_PACIENTE.Value));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_ID_PACIENTE.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             if ((Original_DATA.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(Original_DATA.Value));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(Original_DATA.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             if ((Original_HORARIO.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_HORARIO.Value));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((System.DateTime)(Original_HORARIO.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(ID_CONSULTA));
+            if ((Original_RETORNO == null)) {
+                throw new global::System.ArgumentNullException("Original_RETORNO");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_RETORNO));
+            }
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(ID_CONSULTA));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2480,8 +2664,8 @@ SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO FROM Consulta WHERE (I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> ID_MEDICO, global::System.Nullable<int> ID_PACIENTE, global::System.Nullable<global::System.DateTime> DATA, global::System.Nullable<global::System.DateTime> HORARIO, int Original_ID_CONSULTA, global::System.Nullable<int> Original_ID_MEDICO, global::System.Nullable<int> Original_ID_PACIENTE, global::System.Nullable<global::System.DateTime> Original_DATA, global::System.Nullable<global::System.DateTime> Original_HORARIO) {
-            return this.Update(ID_MEDICO, ID_PACIENTE, DATA, HORARIO, Original_ID_CONSULTA, Original_ID_MEDICO, Original_ID_PACIENTE, Original_DATA, Original_HORARIO, Original_ID_CONSULTA);
+        public virtual int Update(global::System.Nullable<int> ID_MEDICO, global::System.Nullable<int> ID_PACIENTE, global::System.Nullable<global::System.DateTime> DATA, global::System.Nullable<global::System.DateTime> HORARIO, string RETORNO, int Original_ID_CONSULTA, global::System.Nullable<int> Original_ID_MEDICO, global::System.Nullable<int> Original_ID_PACIENTE, global::System.Nullable<global::System.DateTime> Original_DATA, global::System.Nullable<global::System.DateTime> Original_HORARIO, string Original_RETORNO) {
+            return this.Update(ID_MEDICO, ID_PACIENTE, DATA, HORARIO, RETORNO, Original_ID_CONSULTA, Original_ID_MEDICO, Original_ID_PACIENTE, Original_DATA, Original_HORARIO, Original_RETORNO, Original_ID_CONSULTA);
         }
     }
     
@@ -3027,13 +3211,13 @@ SELECT ID_MEDICO, NOME_MEDICO, TELEFONE_MEDICO, VALOR_CONSULTA FROM Medico WHERE
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CIDADE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CIDADE", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CIDADE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CIDADE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CEP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CEP", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CEP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CEP", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CEP", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CEP", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SEXO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SEXO", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SEXO", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SEXO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_TELEFONE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TELEFONE", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TELEFONE", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TELEFONE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TELEFONE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TELEFONE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CELULAR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CELULAR", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CELULAR", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CELULAR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CELULAR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CELULAR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Paciente] ([NOME_PACIENTE], [ENDERECO], [NUMERO], [BAIRRO], [CIDADE], [CEP], [SEXO], [TELEFONE], [CELULAR]) VALUES (@NOME_PACIENTE, @ENDERECO, @NUMERO, @BAIRRO, @CIDADE, @CEP, @SEXO, @TELEFONE, @CELULAR);
@@ -3044,10 +3228,10 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NUMERO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NUMERO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BAIRRO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BAIRRO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CIDADE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CIDADE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CEP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CEP", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CEP", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CEP", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SEXO", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SEXO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TELEFONE", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TELEFONE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CELULAR", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CELULAR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TELEFONE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TELEFONE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CELULAR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CELULAR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Paciente] SET [NOME_PACIENTE] = @NOME_PACIENTE, [ENDERECO] = @ENDERECO, [NUMERO] = @NUMERO, [BAIRRO] = @BAIRRO, [CIDADE] = @CIDADE, [CEP] = @CEP, [SEXO] = @SEXO, [TELEFONE] = @TELEFONE, [CELULAR] = @CELULAR WHERE (([ID_PACIENTE] = @Original_ID_PACIENTE) AND ((@IsNull_NOME_PACIENTE = 1 AND [NOME_PACIENTE] IS NULL) OR ([NOME_PACIENTE] = @Original_NOME_PACIENTE)) AND ((@IsNull_ENDERECO = 1 AND [ENDERECO] IS NULL) OR ([ENDERECO] = @Original_ENDERECO)) AND ((@IsNull_NUMERO = 1 AND [NUMERO] IS NULL) OR ([NUMERO] = @Original_NUMERO)) AND ((@IsNull_BAIRRO = 1 AND [BAIRRO] IS NULL) OR ([BAIRRO] = @Original_BAIRRO)) AND ((@IsNull_CIDADE = 1 AND [CIDADE] IS NULL) OR ([CIDADE] = @Original_CIDADE)) AND ((@IsNull_CEP = 1 AND [CEP] IS NULL) OR ([CEP] = @Original_CEP)) AND ((@IsNull_SEXO = 1 AND [SEXO] IS NULL) OR ([SEXO] = @Original_SEXO)) AND ((@IsNull_TELEFONE = 1 AND [TELEFONE] IS NULL) OR ([TELEFONE] = @Original_TELEFONE)) AND ((@IsNull_CELULAR = 1 AND [CELULAR] IS NULL) OR ([CELULAR] = @Original_CELULAR)));
@@ -3058,10 +3242,10 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NUMERO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NUMERO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BAIRRO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BAIRRO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CIDADE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CIDADE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CEP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CEP", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CEP", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CEP", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SEXO", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SEXO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TELEFONE", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TELEFONE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CELULAR", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CELULAR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TELEFONE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TELEFONE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CELULAR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CELULAR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_PACIENTE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_PACIENTE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_NOME_PACIENTE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_PACIENTE", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NOME_PACIENTE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_PACIENTE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -3074,13 +3258,13 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CIDADE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CIDADE", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CIDADE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CIDADE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CEP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CEP", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CEP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CEP", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CEP", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CEP", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SEXO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SEXO", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SEXO", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SEXO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_TELEFONE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TELEFONE", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TELEFONE", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TELEFONE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TELEFONE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TELEFONE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CELULAR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CELULAR", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CELULAR", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CELULAR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CELULAR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CELULAR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_PACIENTE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID_PACIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -3159,7 +3343,7 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID_PACIENTE, string Original_NOME_PACIENTE, string Original_ENDERECO, global::System.Nullable<int> Original_NUMERO, string Original_BAIRRO, string Original_CIDADE, global::System.Nullable<int> Original_CEP, string Original_SEXO, string Original_TELEFONE, string Original_CELULAR) {
+        public virtual int Delete(int Original_ID_PACIENTE, string Original_NOME_PACIENTE, string Original_ENDERECO, global::System.Nullable<int> Original_NUMERO, string Original_BAIRRO, string Original_CIDADE, string Original_CEP, string Original_SEXO, string Original_TELEFONE, string Original_CELULAR) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID_PACIENTE));
             if ((Original_NOME_PACIENTE == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -3201,13 +3385,13 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_CIDADE));
             }
-            if ((Original_CEP.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((int)(Original_CEP.Value));
-            }
-            else {
+            if ((Original_CEP == null)) {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_CEP));
             }
             if ((Original_SEXO == null)) {
                 this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
@@ -3253,7 +3437,7 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string NOME_PACIENTE, string ENDERECO, global::System.Nullable<int> NUMERO, string BAIRRO, string CIDADE, global::System.Nullable<int> CEP, string SEXO, string TELEFONE, string CELULAR) {
+        public virtual int Insert(string NOME_PACIENTE, string ENDERECO, global::System.Nullable<int> NUMERO, string BAIRRO, string CIDADE, string CEP, string SEXO, string TELEFONE, string CELULAR) {
             if ((NOME_PACIENTE == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -3284,11 +3468,11 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
             else {
                 this.Adapter.InsertCommand.Parameters[4].Value = ((string)(CIDADE));
             }
-            if ((CEP.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((int)(CEP.Value));
+            if ((CEP == null)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(CEP));
             }
             if ((SEXO == null)) {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
@@ -3334,7 +3518,7 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
                     global::System.Nullable<int> NUMERO, 
                     string BAIRRO, 
                     string CIDADE, 
-                    global::System.Nullable<int> CEP, 
+                    string CEP, 
                     string SEXO, 
                     string TELEFONE, 
                     string CELULAR, 
@@ -3344,7 +3528,7 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
                     global::System.Nullable<int> Original_NUMERO, 
                     string Original_BAIRRO, 
                     string Original_CIDADE, 
-                    global::System.Nullable<int> Original_CEP, 
+                    string Original_CEP, 
                     string Original_SEXO, 
                     string Original_TELEFONE, 
                     string Original_CELULAR, 
@@ -3379,11 +3563,11 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
             else {
                 this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(CIDADE));
             }
-            if ((CEP.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(CEP.Value));
+            if ((CEP == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(CEP));
             }
             if ((SEXO == null)) {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
@@ -3444,13 +3628,13 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
                 this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_CIDADE));
             }
-            if ((Original_CEP.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(Original_CEP.Value));
-            }
-            else {
+            if ((Original_CEP == null)) {
                 this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_CEP));
             }
             if ((Original_SEXO == null)) {
                 this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
@@ -3503,7 +3687,7 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
                     global::System.Nullable<int> NUMERO, 
                     string BAIRRO, 
                     string CIDADE, 
-                    global::System.Nullable<int> CEP, 
+                    string CEP, 
                     string SEXO, 
                     string TELEFONE, 
                     string CELULAR, 
@@ -3513,7 +3697,7 @@ SELECT ID_PACIENTE, NOME_PACIENTE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP, SEXO, 
                     global::System.Nullable<int> Original_NUMERO, 
                     string Original_BAIRRO, 
                     string Original_CIDADE, 
-                    global::System.Nullable<int> Original_CEP, 
+                    string Original_CEP, 
                     string Original_SEXO, 
                     string Original_TELEFONE, 
                     string Original_CELULAR) {

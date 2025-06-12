@@ -2,12 +2,12 @@ C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\bin\D
 C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\bin\Debug\ControleConsultorio.exe
 C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\bin\Debug\ControleConsultorio.pdb
 C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\Debug\ControleConsultorio.csproj.AssemblyReference.cache
+C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\Debug\ControleConsultorio.frmConsultas.resources
 C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\Debug\ControleConsultorio.frmMain.resources
 C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\Debug\ControleConsultorio.frmMedicos.resources
+C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\Debug\ControleConsultorio.frmPacientes.resources
 C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\Debug\ControleConsultorio.Properties.Resources.resources
 C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\Debug\ControleConsultorio.csproj.GenerateResource.cache
 C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\Debug\ControleConsultorio.csproj.CoreCompileInputs.cache
 C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\Debug\ControleConsultorio.exe
 C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\Debug\ControleConsultorio.pdb
-C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\Debug\ControleConsultorio.frmPacientes.resources
-C:\Users\aluno\Desktop\Cristyan\C#\ControleConsultorio\ControleConsultorio\obj\Debug\ControleConsultorio.frmConsultas.resources

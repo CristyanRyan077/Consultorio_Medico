@@ -129,5 +129,23 @@
   <ItemGroup>
     <None Include="Resources\termometro.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1600px_COLOURBOX34432642.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\white-modern-medical-wallpaper-geometric-hexagon-medical-icons-technology-background-vector.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AdobeStock_281967200.jpeg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

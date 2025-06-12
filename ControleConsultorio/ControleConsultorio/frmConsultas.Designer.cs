@@ -29,37 +29,38 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultas));
             System.Windows.Forms.Label iD_CONSULTALabel;
             System.Windows.Forms.Label iD_MEDICOLabel;
             System.Windows.Forms.Label iD_PACIENTELabel;
             System.Windows.Forms.Label dATALabel;
             System.Windows.Forms.Label hORARIOLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultas));
+            System.Windows.Forms.Label rETORNOLabel;
             this.consultorio_CsDataSet = new ControleConsultorio.Consultorio_CsDataSet();
             this.consultaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.consultaTableAdapter = new ControleConsultorio.Consultorio_CsDataSetTableAdapters.ConsultaTableAdapter();
             this.tableAdapterManager = new ControleConsultorio.Consultorio_CsDataSetTableAdapters.TableAdapterManager();
+            this.medicoTableAdapter = new ControleConsultorio.Consultorio_CsDataSetTableAdapters.MedicoTableAdapter();
+            this.pacienteTableAdapter = new ControleConsultorio.Consultorio_CsDataSetTableAdapters.PacienteTableAdapter();
             this.consultaBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.consultaBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.iD_CONSULTATextBox = new System.Windows.Forms.TextBox();
             this.iD_MEDICOComboBox = new System.Windows.Forms.ComboBox();
-            this.iD_PACIENTEComboBox = new System.Windows.Forms.ComboBox();
-            this.dATADateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.medicoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.medicoTableAdapter = new ControleConsultorio.Consultorio_CsDataSetTableAdapters.MedicoTableAdapter();
+            this.iD_PACIENTEComboBox = new System.Windows.Forms.ComboBox();
             this.pacienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pacienteTableAdapter = new ControleConsultorio.Consultorio_CsDataSetTableAdapters.PacienteTableAdapter();
+            this.dATADateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.hORARIOComboBox = new System.Windows.Forms.ComboBox();
             this.consultaDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,11 +68,13 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rETORNORadioButton = new System.Windows.Forms.RadioButton();
             iD_CONSULTALabel = new System.Windows.Forms.Label();
             iD_MEDICOLabel = new System.Windows.Forms.Label();
             iD_PACIENTELabel = new System.Windows.Forms.Label();
             dATALabel = new System.Windows.Forms.Label();
             hORARIOLabel = new System.Windows.Forms.Label();
+            rETORNOLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.consultorio_CsDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultaBindingNavigator)).BeginInit();
@@ -80,6 +83,56 @@
             ((System.ComponentModel.ISupportInitialize)(this.pacienteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultaDataGridView)).BeginInit();
             this.SuspendLayout();
+            // 
+            // iD_CONSULTALabel
+            // 
+            iD_CONSULTALabel.AutoSize = true;
+            iD_CONSULTALabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            iD_CONSULTALabel.Location = new System.Drawing.Point(34, 57);
+            iD_CONSULTALabel.Name = "iD_CONSULTALabel";
+            iD_CONSULTALabel.Size = new System.Drawing.Size(61, 16);
+            iD_CONSULTALabel.TabIndex = 1;
+            iD_CONSULTALabel.Text = "Código:";
+            // 
+            // iD_MEDICOLabel
+            // 
+            iD_MEDICOLabel.AutoSize = true;
+            iD_MEDICOLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            iD_MEDICOLabel.Location = new System.Drawing.Point(33, 91);
+            iD_MEDICOLabel.Name = "iD_MEDICOLabel";
+            iD_MEDICOLabel.Size = new System.Drawing.Size(62, 16);
+            iD_MEDICOLabel.TabIndex = 3;
+            iD_MEDICOLabel.Text = "Médico:";
+            // 
+            // iD_PACIENTELabel
+            // 
+            iD_PACIENTELabel.AutoSize = true;
+            iD_PACIENTELabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            iD_PACIENTELabel.Location = new System.Drawing.Point(28, 125);
+            iD_PACIENTELabel.Name = "iD_PACIENTELabel";
+            iD_PACIENTELabel.Size = new System.Drawing.Size(72, 16);
+            iD_PACIENTELabel.TabIndex = 5;
+            iD_PACIENTELabel.Text = "Paciente:";
+            // 
+            // dATALabel
+            // 
+            dATALabel.AutoSize = true;
+            dATALabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dATALabel.Location = new System.Drawing.Point(42, 159);
+            dATALabel.Name = "dATALabel";
+            dATALabel.Size = new System.Drawing.Size(44, 16);
+            dATALabel.TabIndex = 7;
+            dATALabel.Text = "Data:";
+            // 
+            // hORARIOLabel
+            // 
+            hORARIOLabel.AutoSize = true;
+            hORARIOLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            hORARIOLabel.Location = new System.Drawing.Point(220, 159);
+            hORARIOLabel.Name = "hORARIOLabel";
+            hORARIOLabel.Size = new System.Drawing.Size(63, 16);
+            hORARIOLabel.TabIndex = 9;
+            hORARIOLabel.Text = "Horário:";
             // 
             // consultorio_CsDataSet
             // 
@@ -102,6 +155,14 @@
             this.tableAdapterManager.MedicoTableAdapter = this.medicoTableAdapter;
             this.tableAdapterManager.PacienteTableAdapter = this.pacienteTableAdapter;
             this.tableAdapterManager.UpdateOrder = ControleConsultorio.Consultorio_CsDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // medicoTableAdapter
+            // 
+            this.medicoTableAdapter.ClearBeforeFill = true;
+            // 
+            // pacienteTableAdapter
+            // 
+            this.pacienteTableAdapter.ClearBeforeFill = true;
             // 
             // consultaBindingNavigator
             // 
@@ -133,6 +194,31 @@
             this.consultaBindingNavigator.TabIndex = 0;
             this.consultaBindingNavigator.Text = "bindingNavigator1";
             // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorAddNewItem.Text = "Adicionar novo";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(37, 22);
+            this.bindingNavigatorCountItem.Text = "de {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Número total de itens";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorDeleteItem.Text = "Excluir";
+            // 
             // bindingNavigatorMoveFirstItem
             // 
             this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -160,22 +246,14 @@
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Posição";
             this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Posição atual";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(37, 22);
-            this.bindingNavigatorCountItem.Text = "de {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Número total de itens";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigatorMoveNextItem
@@ -198,26 +276,8 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Adicionar novo";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Excluir";
             // 
             // consultaBindingNavigatorSaveItem
             // 
@@ -228,16 +288,6 @@
             this.consultaBindingNavigatorSaveItem.Text = "Salvar Dados";
             this.consultaBindingNavigatorSaveItem.Click += new System.EventHandler(this.consultaBindingNavigatorSaveItem_Click_1);
             // 
-            // iD_CONSULTALabel
-            // 
-            iD_CONSULTALabel.AutoSize = true;
-            iD_CONSULTALabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            iD_CONSULTALabel.Location = new System.Drawing.Point(34, 57);
-            iD_CONSULTALabel.Name = "iD_CONSULTALabel";
-            iD_CONSULTALabel.Size = new System.Drawing.Size(61, 16);
-            iD_CONSULTALabel.TabIndex = 1;
-            iD_CONSULTALabel.Text = "Código:";
-            // 
             // iD_CONSULTATextBox
             // 
             this.iD_CONSULTATextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.consultaBindingSource, "ID_CONSULTA", true));
@@ -246,16 +296,6 @@
             this.iD_CONSULTATextBox.ReadOnly = true;
             this.iD_CONSULTATextBox.Size = new System.Drawing.Size(86, 20);
             this.iD_CONSULTATextBox.TabIndex = 2;
-            // 
-            // iD_MEDICOLabel
-            // 
-            iD_MEDICOLabel.AutoSize = true;
-            iD_MEDICOLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            iD_MEDICOLabel.Location = new System.Drawing.Point(33, 91);
-            iD_MEDICOLabel.Name = "iD_MEDICOLabel";
-            iD_MEDICOLabel.Size = new System.Drawing.Size(62, 16);
-            iD_MEDICOLabel.TabIndex = 3;
-            iD_MEDICOLabel.Text = "Médico:";
             // 
             // iD_MEDICOComboBox
             // 
@@ -270,15 +310,10 @@
             this.iD_MEDICOComboBox.ValueMember = "ID_MEDICO";
             this.iD_MEDICOComboBox.SelectedIndexChanged += new System.EventHandler(this.iD_MEDICOComboBox_SelectedIndexChanged);
             // 
-            // iD_PACIENTELabel
+            // medicoBindingSource
             // 
-            iD_PACIENTELabel.AutoSize = true;
-            iD_PACIENTELabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            iD_PACIENTELabel.Location = new System.Drawing.Point(28, 125);
-            iD_PACIENTELabel.Name = "iD_PACIENTELabel";
-            iD_PACIENTELabel.Size = new System.Drawing.Size(72, 16);
-            iD_PACIENTELabel.TabIndex = 5;
-            iD_PACIENTELabel.Text = "Paciente:";
+            this.medicoBindingSource.DataMember = "Medico";
+            this.medicoBindingSource.DataSource = this.consultorio_CsDataSet;
             // 
             // iD_PACIENTEComboBox
             // 
@@ -292,15 +327,10 @@
             this.iD_PACIENTEComboBox.TabIndex = 6;
             this.iD_PACIENTEComboBox.ValueMember = "ID_PACIENTE";
             // 
-            // dATALabel
+            // pacienteBindingSource
             // 
-            dATALabel.AutoSize = true;
-            dATALabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dATALabel.Location = new System.Drawing.Point(42, 159);
-            dATALabel.Name = "dATALabel";
-            dATALabel.Size = new System.Drawing.Size(44, 16);
-            dATALabel.TabIndex = 7;
-            dATALabel.Text = "Data:";
+            this.pacienteBindingSource.DataMember = "Paciente";
+            this.pacienteBindingSource.DataSource = this.consultorio_CsDataSet;
             // 
             // dATADateTimePicker
             // 
@@ -310,34 +340,6 @@
             this.dATADateTimePicker.Name = "dATADateTimePicker";
             this.dATADateTimePicker.Size = new System.Drawing.Size(104, 20);
             this.dATADateTimePicker.TabIndex = 8;
-            // 
-            // hORARIOLabel
-            // 
-            hORARIOLabel.AutoSize = true;
-            hORARIOLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            hORARIOLabel.Location = new System.Drawing.Point(220, 159);
-            hORARIOLabel.Name = "hORARIOLabel";
-            hORARIOLabel.Size = new System.Drawing.Size(63, 16);
-            hORARIOLabel.TabIndex = 9;
-            hORARIOLabel.Text = "Horário:";
-            // 
-            // medicoBindingSource
-            // 
-            this.medicoBindingSource.DataMember = "Medico";
-            this.medicoBindingSource.DataSource = this.consultorio_CsDataSet;
-            // 
-            // medicoTableAdapter
-            // 
-            this.medicoTableAdapter.ClearBeforeFill = true;
-            // 
-            // pacienteBindingSource
-            // 
-            this.pacienteBindingSource.DataMember = "Paciente";
-            this.pacienteBindingSource.DataSource = this.consultorio_CsDataSet;
-            // 
-            // pacienteTableAdapter
-            // 
-            this.pacienteTableAdapter.ClearBeforeFill = true;
             // 
             // hORARIOComboBox
             // 
@@ -404,11 +406,33 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "HORARIO";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
+            // rETORNOLabel
+            // 
+            rETORNOLabel.AutoSize = true;
+            rETORNOLabel.Location = new System.Drawing.Point(400, 183);
+            rETORNOLabel.Name = "rETORNOLabel";
+            rETORNOLabel.Size = new System.Drawing.Size(64, 13);
+            rETORNOLabel.TabIndex = 12;
+            rETORNOLabel.Text = "RETORNO:";
+            // 
+            // rETORNORadioButton
+            // 
+            this.rETORNORadioButton.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.consultaBindingSource, "RETORNO", true));
+            this.rETORNORadioButton.Location = new System.Drawing.Point(470, 177);
+            this.rETORNORadioButton.Name = "rETORNORadioButton";
+            this.rETORNORadioButton.Size = new System.Drawing.Size(104, 24);
+            this.rETORNORadioButton.TabIndex = 13;
+            this.rETORNORadioButton.TabStop = true;
+            this.rETORNORadioButton.Text = "radioButton1";
+            this.rETORNORadioButton.UseVisualStyleBackColor = true;
+            // 
             // frmConsultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 506);
+            this.Controls.Add(rETORNOLabel);
+            this.Controls.Add(this.rETORNORadioButton);
             this.Controls.Add(this.consultaDataGridView);
             this.Controls.Add(this.hORARIOComboBox);
             this.Controls.Add(iD_CONSULTALabel);
@@ -471,5 +495,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.RadioButton rETORNORadioButton;
     }
 }

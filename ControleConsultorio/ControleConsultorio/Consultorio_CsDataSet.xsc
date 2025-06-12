@@ -8,31 +8,17 @@
   <TableUISettings>
     <TableUISetting Name="Consulta">
       <ColumnUISettings>
-        <ColumnUISetting Name="ID_MEDICO">
-          <ControlSettings>
-            <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
-              <BindableControlInfo Name="ComboBox" Type="System.Windows.Forms.ComboBox" AssemblyName="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-            </ControlSetting>
-          </ControlSettings>
-        </ColumnUISetting>
-        <ColumnUISetting Name="ID_PACIENTE">
-          <ControlSettings>
-            <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
-              <BindableControlInfo Name="ComboBox" Type="System.Windows.Forms.ComboBox" AssemblyName="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-            </ControlSetting>
-          </ControlSettings>
-        </ColumnUISetting>
-        <ColumnUISetting Name="DATA">
+        <ColumnUISetting Name="HORARIO">
           <ControlSettings>
             <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
               <BindableControlInfo Name="DateTimePicker" Type="System.Windows.Forms.DateTimePicker" AssemblyName="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
             </ControlSetting>
           </ControlSettings>
         </ColumnUISetting>
-        <ColumnUISetting Name="HORARIO">
+        <ColumnUISetting Name="RETORNO">
           <ControlSettings>
             <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
-              <BindableControlInfo Name="ComboBox" Type="System.Windows.Forms.ComboBox" AssemblyName="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+              <BindableControlInfo Name="RadioButton" Type="System.Windows.Forms.RadioButton" AssemblyName="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
             </ControlSetting>
           </ControlSettings>
         </ColumnUISetting>
